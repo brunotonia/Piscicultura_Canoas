@@ -1,0 +1,143 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.brunotonia.piscicultura.view.UsuarioAdicionarActivity"
+    android:background="@android:color/white">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/AdicionarUsuario"
+        android:id="@+id/lblTitulo"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/holo_blue_dark" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/Nome"
+        android:id="@+id/lblNome"
+        android:layout_below="@+id/lblTitulo"
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/holo_blue_dark"
+        android:layout_marginTop="25dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/txtNome"
+        android:layout_below="@+id/lblNome"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="@android:color/holo_blue_dark" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/Usuario"
+        android:id="@+id/lblUsuario"
+        android:layout_below="@+id/txtNome"
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/holo_blue_dark" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:id="@+id/txtUsuario"
+        android:layout_below="@+id/lblUsuario"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="@android:color/holo_blue_dark"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/Senha"
+        android:id="@+id/lblSenha"
+        android:layout_below="@+id/txtUsuario"
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/holo_blue_dark" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/txtSenha"
+        android:layout_below="@+id/lblSenha"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/txtUsuario" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ExibirSenha"
+        android:id="@+id/swExibe"
+        android:textColor="@android:color/holo_blue_dark"
+        android:layout_below="@+id/lblSenha"
+        android:layout_alignEnd="@+id/txtSenha" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/Nivel"
+        android:id="@+id/lblNivel"
+        android:layout_below="@+id/swExibe"
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/holo_blue_dark" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spnNivel"
+        android:layout_below="@+id/lblNivel"
+        android:layout_alignParentStart="true"
+        android:spinnerMode="dialog" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/Estado"
+        android:id="@+id/lblEstado"
+        android:layout_below="@+id/spnNivel"
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/holo_blue_dark" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spnEstado"
+        android:layout_below="@+id/lblEstado"
+        android:layout_alignParentStart="true"
+        android:spinnerMode="dialog"
+        android:layout_marginBottom="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginLeft="0dp" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/AdicionarUsuario"
+        android:id="@+id/btnAdicionar"
+        android:textColor="@android:color/white"
+        android:background="@android:color/holo_blue_dark"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="0dp"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>

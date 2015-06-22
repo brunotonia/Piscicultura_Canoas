@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Piscicultura</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="AppName">Piscicultura Canoas</string>
+    <string name="Entrar">Entrar</string>
+    <string name="ExibirSenha">Exibir Senha</string>
+    <string name="ExibirSenhas">Exibir Senhas</string>
+    <string name="Senha">Senha</string>
+    <string name="Usuario">Usuário</string>
+    <string name="title_activity_main">Piscicultura Canoas</string>
+    <string name="title_activity_usuario">UsuarioActivity</string>
+    <string name="GerenciarUsuarios">Gerenciar Usuários</string>
+    <string name="AdicionarUsuario">Adicionar Usuário</string>
+    <string name="EditarUsuario">Editar Usuário</string>
+    <string name="title_activity_usuario_adicionar">Piscicultura Canoas</string>
+    <string name="Nome">Nome</string>
+    <string name="Nivel">Nível</string>
+    <string name="Estado">Estado</string>
+    <string name="title_activity_usuario_listar">UsuarioListarActivity</string>
+    <string name="title_activity_fornecedor">FornecedorActivit</string>
+    <string name="title_activity_fornecedor_listar">FornecedorListarActivity</string>
+    <string name="title_activity_fornecedor_adicionar">FornecedorAdicionar</string>
+    <string name="title_activity_usuario_alterar_senha">UsuarioAlterarSenhaActivity</string>
+    <string name="AlterarSenha">Alterar Senha</string>
+    <string name="SenhaAtual">Senha Atual</string>
+    <string name="NovaSenha">Nova Senha</string>
+    <string name="ConfirmeANovaSEnha">Confirme A Nova Senha</string>
+    <string name="GerenciarFornecedores">Gerenciar Fornecedores</string>
+    <string name="AdicionarFornecedor">Adicionar Fornecedor</string>
+</resources>
