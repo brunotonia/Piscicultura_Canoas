@@ -1,15 +1,27 @@
 package com.brunotonia.piscicultura.view;
 
-import android.app.Activity;
+import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
 
 import com.brunotonia.piscicultura.R;
+import com.brunotonia.piscicultura.bo.FornecedorBO;
+import com.brunotonia.piscicultura.util.ListUtil;
+import com.brunotonia.piscicultura.vo.FornecedorVO;
 import com.brunotonia.piscicultura.vo.SessaoVO;
 
-public class FornecedorListarActivity extends Activity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class FornecedorListarActivity extends ListActivity {
 
     /* Variáveis de Sessão */
     private Intent it = null;
@@ -17,17 +29,48 @@ public class FornecedorListarActivity extends Activity {
     private SessaoVO sessaoVO = null;
     private String operacao = null;
 
+
     /* Variáveis dos Elementos de Tela */
+    private List<FornecedorVO> fornecedores = new ArrayList<>();
+    private FornecedorVO fornecedorVO = null;
+    private FornecedorBO fornecedorBO = FornecedorBO.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fornecedor_listar);
+        //setContentView(R.layout.activity_fornecedor_listar);
 
         /* Recupera params */
         recuperarParams();
 
         /* Inicializa Elementos de Interface */
+
+        /* Gera a Lista */
+        try {
+            carregarFornecedores(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        /* Listener da Lista de Usuários */
+        getListView().setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                        fornecedorVO = fornecedores.get(position);
+                        it = new Intent(FornecedorListarActivity.this, FornecedorAdicionarActivity.class);
+                        carregarParams();
+                        it.putExtras(params);
+                        startActivity(it);
+                    }
+                });
+
+         /* Gera a Lista */
+        try {
+            carregarFornecedores(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -37,11 +80,27 @@ public class FornecedorListarActivity extends Activity {
         return true;
     }
 
+    /* Gera lista de Fornecedores */
+    private void carregarFornecedores(Context context) throws Exception {
+        fornecedores = fornecedorBO.selecionar(context);
+
+        BaseAdapter adapter = new ArrayAdapter<>(
+                FornecedorListarActivity.this, // CONTEXTO/TELA
+                android.R.layout.simple_list_item_single_choice,  // LAYOUT DO ITEM
+                ListUtil.convertToStringList(fornecedores)); // LISTA DE OBJETOS
+
+        getListView().setChoiceMode(
+                ListView.CHOICE_MODE_SINGLE);
+
+        setListAdapter(adapter);
+    }
+
     /* Recuperar params */
     private void recuperarParams() {
         it = getIntent();
         params = it.getExtras();
         sessaoVO = new SessaoVO(params.getLong("sessaoId"), params.getString("sessaoUsuario"), params.getInt("sessaoNivel"));
+        operacao = params.getString("fornecedorOperacao");
     }
 
     /* Carregar params */
@@ -50,6 +109,16 @@ public class FornecedorListarActivity extends Activity {
         params.putLong("sessaoId", sessaoVO.getId());
         params.putString("sessaoUsuario", sessaoVO.getNome());
         params.putInt("sessaoNivel", sessaoVO.getNivel());
+
+        params.putString("fornecedorOperacao", operacao);
+
+        params.putLong("fornecedorID", fornecedorVO.getId());
+        params.putString("fornecedorNome", fornecedorVO.getNome());
+        params.putString("fornecedorCpf", fornecedorVO.getCpf());
+        params.putString("fornecedorEmail", fornecedorVO.getEmail());
+        params.putString("fornecedorDdd", fornecedorVO.getDdd());
+        params.putString("fornecedorTelefone", fornecedorVO.getTelefone());
+        params.putString("fornecedorContato", fornecedorVO.getContato());
     }
 
     @Override

@@ -79,16 +79,16 @@ public class FornecedorActivity extends Activity {
 
     /* Adicionar Fornecedor */
     private void adicionar() {
-        params.putString("fOperacao", "adicionar");
-        it = new Intent(this, UsuarioAdicionarActivity.class);
+        params.putString("fornecedorOperacao", "adicionar");
+        it = new Intent(this, FornecedorAdicionarActivity.class);
         it.putExtras(params);
         startActivity(it);
     }
 
     /* Editar Fornecedor */
     private void editar() {
-        params.putString("fOperacao", "editar");
-        it = new Intent(this, UsuarioListarActivity.class);
+        params.putString("fornecedorOperacao", "editar");
+        it = new Intent(this, FornecedorListarActivity.class);
         it.putExtras(params);
         startActivity(it);
     }

@@ -55,10 +55,6 @@ public class UsuarioListarActivity extends ListActivity {
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                        usuarioVO = usuarios.get(position);
-                        System.out.println(usuarioVO.getId());
-                        System.out.println(usuarioVO.getNome());
-                        System.out.println(usuarioVO.getId());
                         it = new Intent(UsuarioListarActivity.this, UsuarioAdicionarActivity.class);
                         carregarParams();
                         it.putExtras(params);

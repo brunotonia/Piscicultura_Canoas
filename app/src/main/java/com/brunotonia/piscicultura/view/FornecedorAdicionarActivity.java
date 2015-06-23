@@ -14,10 +14,8 @@ import android.widget.Toast;
 
 import com.brunotonia.piscicultura.R;
 import com.brunotonia.piscicultura.bo.FornecedorBO;
-import com.brunotonia.piscicultura.bo.UsuarioBO;
 import com.brunotonia.piscicultura.vo.FornecedorVO;
 import com.brunotonia.piscicultura.vo.SessaoVO;
-import com.brunotonia.piscicultura.vo.UsuarioVO;
 
 public class FornecedorAdicionarActivity extends Activity {
 
@@ -75,11 +73,11 @@ public class FornecedorAdicionarActivity extends Activity {
         FornecedorBO fornecedorBO = FornecedorBO.getInstance();
         FornecedorVO fornecedorVO = null;
         try {
-            if (operacao.equals("Adicionar")) {
+            if (operacao.equals("adicionar")) {
                 fornecedorVO = new FornecedorVO(txtNome.getText().toString(), txtCPF.getText().toString(), txtEmail.getText().toString(),
                         txtDdd.getText().toString(), txtTelefone.getText().toString(), txtContato.getText().toString());
                 if (fornecedorBO.adicionar(context, fornecedorVO)) {
-                    it = new Intent(this, UsuarioActivity.class);
+                    it = new Intent(this, FornecedorActivity.class);
                     carregarParams();
                     it.putExtras(params);
                     startActivity(it);
@@ -90,7 +88,7 @@ public class FornecedorAdicionarActivity extends Activity {
             } else {
                 fornecedorVO = new FornecedorVO(id, txtNome.getText().toString(), txtCPF.getText().toString(), txtEmail.getText().toString(),
                         txtDdd.getText().toString(), txtTelefone.getText().toString(), txtContato.getText().toString());
-                it = new Intent(this, UsuarioActivity.class);
+                it = new Intent(this, FornecedorActivity.class);
                 if (fornecedorBO.editar(context, fornecedorVO)) {
                     carregarParams();
                     it.putExtras(params);
@@ -110,6 +108,7 @@ public class FornecedorAdicionarActivity extends Activity {
         it = getIntent();
         params = it.getExtras();
         sessaoVO = new SessaoVO(params.getLong("sessaoId"), params.getString("sessaoUsuario"), params.getInt("sessaoNivel"));
+        operacao = params.getString("fornecedorOperacao");
     }
 
     /* Carregar params */
@@ -122,14 +121,18 @@ public class FornecedorAdicionarActivity extends Activity {
 
     /* Altera Rótulos em caso de Edição */
     private void alteraRotulos() {
-        if(operacao.equals("Editar")) {
+        if(operacao.equals("editar")) {
             /* Rótulos e Botões */
-            lblTitulo.setText("Editar Usuario");
+            lblTitulo.setText("Editar Fornecedor");
             btnAdicionar.setText(R.string.EditarFornecedor);
             /* Povoa Campos da Interface */
             id = new Long(params.getLong("fornecedorID"));
             txtNome.setText(params.getString("fornecedorNome"));
-
+            txtCPF.setText(params.getString("fornecedorCpf"));
+            txtEmail.setText(params.getString("fornecedorEmail"));
+            txtDdd.setText(params.getString("fornecedorDdd"));
+            txtTelefone.setText(params.getString("fornecedorTelefone"));
+            txtContato.setText(params.getString("fornecedorContato"));
         }
     }
 
