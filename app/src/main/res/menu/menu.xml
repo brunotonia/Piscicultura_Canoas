@@ -1,6 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.brunotonia.piscicultura.view.MainActivity">
+    <item android:id="@+id/action_GEspecies" android:title="@string/GerenciarEspecies"
+        android:orderInCategory="100" android:showAsAction="never" />
     <item android:id="@+id/action_GFornecedores" android:title="@string/GerenciarFornecedores"
         android:orderInCategory="100" android:showAsAction="never" />
     <item android:id="@+id/action_GUsuarios" android:title="@string/GerenciarUsuarios"

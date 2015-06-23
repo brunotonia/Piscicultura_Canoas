@@ -70,6 +70,11 @@ public class MainActivity extends Activity {
                 it.putExtras(params);
                 startActivity(it);
                 return true;
+            case (R.id.action_GEspecies) :
+                it = new Intent(this, EspecieActivity.class);
+                it.putExtras(params);
+                startActivity(it);
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

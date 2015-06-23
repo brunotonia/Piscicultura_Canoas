@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.brunotonia.piscicultura.R;
 import com.brunotonia.piscicultura.vo.SessaoVO;
 
-public class UsuarioActivity extends Activity {
+public class EspecieActivity extends Activity {
 
     /* Variáveis de Sessão */
     private Intent it = null;
@@ -21,20 +21,19 @@ public class UsuarioActivity extends Activity {
 
     /* Variáveis dos Elementos de Tela */
     private Button btnAdicionar = null;
-    private Button btnAlterar = null;
     private Button btnEditar = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_usuario);
+        setContentView(R.layout.activity_lote_especie);
 
         /* Recupera params */
         recuperarParams();
+        carregarParams();
 
         /* Inicializa Elementos de Interface */
         btnAdicionar = (Button) findViewById(R.id.btnAdicionar);
-        btnAlterar = (Button) findViewById(R.id.btnAlterar);
         btnEditar = (Button) findViewById(R.id.btnEditar);
 
         /* Adiciona Usuário */
@@ -44,16 +43,8 @@ public class UsuarioActivity extends Activity {
                 if (sessaoVO.isAdministrador()) {
                     adicionar();
                 } else {
-                    Toast.makeText(UsuarioActivity.this, "Usuário sem permissão de acesso", Toast.LENGTH_LONG).show();
+                    Toast.makeText(EspecieActivity.this, "Usuário sem permissão de acesso", Toast.LENGTH_LONG).show();
                 }
-            }
-        });
-
-        /* Altera Senha do Próprio Usuário */
-        btnAlterar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alterar();
             }
         });
 
@@ -64,37 +55,10 @@ public class UsuarioActivity extends Activity {
                 if (sessaoVO.isAdministrador()) {
                     editar();
                 } else {
-                    Toast.makeText(UsuarioActivity.this, "Usuário sem permissão de acesso", Toast.LENGTH_LONG).show();
+                    Toast.makeText(EspecieActivity.this, "Usuário sem permissão de acesso", Toast.LENGTH_LONG).show();
                 }
             }
         });
-
-    }
-
-    /* Adicionar Usuario*/
-    private void adicionar() {
-        carregarParams();
-        it = new Intent(this, UsuarioAdicionarActivity.class);
-        params.putString("usuarioOperacao", "Adicionar");
-        it.putExtras(params);
-        startActivity(it);
-    }
-
-    /* Alterar Senha*/
-    private void alterar() {
-        carregarParams();
-        it = new Intent(this, UsuarioAdicionarActivity.class);
-        it.putExtras(params);
-        startActivity(it);
-    }
-
-    /* Editar Usuario*/
-    private void editar() {
-        carregarParams();
-        it = new Intent(this, UsuarioListarActivity.class);
-        params.putString("usuarioOperacao", "Editar");
-        it.putExtras(params);
-        startActivity(it);
     }
 
     /* Recuperar params */
@@ -110,6 +74,22 @@ public class UsuarioActivity extends Activity {
         params.putLong("sessaoId", sessaoVO.getId());
         params.putString("sessaoUsuario", sessaoVO.getNome());
         params.putInt("sessaoNivel", sessaoVO.getNivel());
+    }
+
+    /* Adicionar Especie */
+    private void adicionar() {
+        params.putString("especieOperacao", "adicionar");
+        it = new Intent(this, EspecieAdicionarActivity.class);
+        it.putExtras(params);
+        startActivity(it);
+    }
+
+    /* Editar Especie */
+    private void editar() {
+        params.putString("especieOperacao", "editar");
+        it = new Intent(this, EspecieListarActivity.class);
+        it.putExtras(params);
+        startActivity(it);
     }
 
     @Override
@@ -144,7 +124,6 @@ public class UsuarioActivity extends Activity {
                 startActivity(it);
                 return true;
         }
-
 
         return super.onOptionsItemSelected(item);
     }

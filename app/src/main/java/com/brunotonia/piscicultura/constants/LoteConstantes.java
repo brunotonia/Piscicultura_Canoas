@@ -22,8 +22,8 @@ public interface LoteConstantes {
             "[" + COLUMN_INICIO     + "] TEXT NOT NULL, " +
             "[" + COLUMN_IND_FINAL  + "] INTEGER, " +
             "[" + COLUMN_FINAL      + "] TEXT, " +
-            "FOREIGN KEY([" + COLUMN_ESPECIE    +"]) REFERENCES " + LoteEspecieConstantes.TABLE_NAME +
-            "(" +  LoteEspecieConstantes.COLUMN_ID + "), " +
+            "FOREIGN KEY([" + COLUMN_ESPECIE    +"]) REFERENCES " + EspecieConstantes.TABLE_NAME +
+            "(" +  EspecieConstantes.COLUMN_ID + "), " +
             "FOREIGN KEY([" + COLUMN_FORNECEDOR +"]) REFERENCES " + FornecedorConstantes.TABLE_NAME +
             "(" +  FornecedorConstantes.COLUMN_ID + "), " +
             "FOREIGN KEY([" + COLUMN_ETAPA      +"]) REFERENCES " + LoteEtapaConstantes.TABLE_NAME +

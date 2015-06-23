@@ -29,7 +29,6 @@ public class FornecedorListarActivity extends ListActivity {
     private SessaoVO sessaoVO = null;
     private String operacao = null;
 
-
     /* Variáveis dos Elementos de Tela */
     private List<FornecedorVO> fornecedores = new ArrayList<>();
     private FornecedorVO fornecedorVO = null;
@@ -139,6 +138,11 @@ public class FornecedorListarActivity extends ListActivity {
             case (R.id.action_GFornecedores) :
                 it = new Intent(this, FornecedorActivity.class);
                 carregarParams();
+                it.putExtras(params);
+                startActivity(it);
+                return true;
+            case (R.id.action_GEspecies) :
+                it = new Intent(this, EspecieActivity.class);
                 it.putExtras(params);
                 startActivity(it);
                 return true;

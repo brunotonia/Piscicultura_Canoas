@@ -47,7 +47,6 @@ public class UsuarioAdicionarActivity extends Activity {
     private Button btnAdicionar = null;
     private boolean exibeSenha = false;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +57,7 @@ public class UsuarioAdicionarActivity extends Activity {
 
         /* Inicializa Elementos de Interface */
         lblTitulo = (TextView) findViewById(R.id.lblTitulo);
-        txtNome = (EditText) findViewById(R.id.txtNome);
+        txtNome = (EditText) findViewById(R.id.txtEspecie);
         txtUsuario = (EditText) findViewById(R.id.txtUsuario);
         txtSenha = (EditText) findViewById(R.id.txtSenha);
         swExibe = (Switch) findViewById(R.id.swExibe);
@@ -214,6 +213,11 @@ public class UsuarioAdicionarActivity extends Activity {
                 return true;
             case (R.id.action_GFornecedores) :
                 it = new Intent(this, FornecedorActivity.class);
+                it.putExtras(params);
+                startActivity(it);
+                return true;
+            case (R.id.action_GEspecies) :
+                it = new Intent(this, EspecieActivity.class);
                 it.putExtras(params);
                 startActivity(it);
                 return true;

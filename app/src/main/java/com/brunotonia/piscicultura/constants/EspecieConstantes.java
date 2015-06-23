@@ -1,7 +1,7 @@
 package com.brunotonia.piscicultura.constants;
 
-public interface LoteEspecieConstantes {
-    String TABLE_NAME  = "lote_especie";
+public interface EspecieConstantes {
+    String TABLE_NAME  = "especie";
     String COLUMN_ID   = "id";
     String COLUMN_ESPECIE = "especie";
 

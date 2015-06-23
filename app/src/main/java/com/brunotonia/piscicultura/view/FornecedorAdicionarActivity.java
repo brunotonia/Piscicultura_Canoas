@@ -46,7 +46,7 @@ public class FornecedorAdicionarActivity extends Activity {
 
         /* Inicializa Elementos de Interface */
         lblTitulo = (TextView) findViewById(R.id.lblTitulo);
-        txtNome = (EditText) findViewById(R.id.txtNome);
+        txtNome = (EditText) findViewById(R.id.txtEspecie);
         txtCPF = (EditText) findViewById(R.id.txtCPF);
         txtEmail = (EditText) findViewById(R.id.txtEmail);
         txtDdd = (EditText) findViewById(R.id.txtDdd);
@@ -159,6 +159,11 @@ public class FornecedorAdicionarActivity extends Activity {
                 return true;
             case (R.id.action_GFornecedores) :
                 it = new Intent(this, FornecedorActivity.class);
+                it.putExtras(params);
+                startActivity(it);
+                return true;
+            case (R.id.action_GEspecies) :
+                it = new Intent(this, EspecieActivity.class);
                 it.putExtras(params);
                 startActivity(it);
                 return true;

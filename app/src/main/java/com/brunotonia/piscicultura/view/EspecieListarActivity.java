@@ -1,100 +1,91 @@
 package com.brunotonia.piscicultura.view;
 
-import android.app.Activity;
+import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
 
 import com.brunotonia.piscicultura.R;
+import com.brunotonia.piscicultura.bo.EspecieBO;
+import com.brunotonia.piscicultura.util.ListUtil;
+import com.brunotonia.piscicultura.vo.EspecieVO;
 import com.brunotonia.piscicultura.vo.SessaoVO;
 
-public class UsuarioActivity extends Activity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class EspecieListarActivity extends ListActivity {
 
     /* Variáveis de Sessão */
     private Intent it = null;
     private Bundle params = null;
     private SessaoVO sessaoVO = null;
+    private String operacao = null;
 
     /* Variáveis dos Elementos de Tela */
-    private Button btnAdicionar = null;
-    private Button btnAlterar = null;
-    private Button btnEditar = null;
+    private List<EspecieVO> especies = new ArrayList<>();
+    private EspecieVO especieVO = null;
+    private EspecieBO especieBO = EspecieBO.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_usuario);
+        //setContentView(R.layout.activity_lote_especie_listar);
 
         /* Recupera params */
         recuperarParams();
 
         /* Inicializa Elementos de Interface */
-        btnAdicionar = (Button) findViewById(R.id.btnAdicionar);
-        btnAlterar = (Button) findViewById(R.id.btnAlterar);
-        btnEditar = (Button) findViewById(R.id.btnEditar);
 
-        /* Adiciona Usuário */
-        btnAdicionar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (sessaoVO.isAdministrador()) {
-                    adicionar();
-                } else {
-                    Toast.makeText(UsuarioActivity.this, "Usuário sem permissão de acesso", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+        /* Gera a Lista */
+        try {
+            carregarEspecies(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        /* Altera Senha do Próprio Usuário */
-        btnAlterar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alterar();
-            }
-        });
+        /* Listener da Lista de Usuários */
+        getListView().setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                        especieVO = especies.get(position);
+                        it = new Intent(EspecieListarActivity.this, EspecieAdicionarActivity.class);
+                        carregarParams();
+                        it.putExtras(params);
+                        startActivity(it);
+                    }
+                });
 
-        /* Edita Usuário */
-        btnEditar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (sessaoVO.isAdministrador()) {
-                    editar();
-                } else {
-                    Toast.makeText(UsuarioActivity.this, "Usuário sem permissão de acesso", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+         /* Gera a Lista */
+        try {
+            carregarEspecies(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
-    /* Adicionar Usuario*/
-    private void adicionar() {
-        carregarParams();
-        it = new Intent(this, UsuarioAdicionarActivity.class);
-        params.putString("usuarioOperacao", "Adicionar");
-        it.putExtras(params);
-        startActivity(it);
-    }
+    /* Gera lista de Especies */
+    private void carregarEspecies(Context context) throws Exception {
+        especies = especieBO.selecionar(context);
 
-    /* Alterar Senha*/
-    private void alterar() {
-        carregarParams();
-        it = new Intent(this, UsuarioAdicionarActivity.class);
-        it.putExtras(params);
-        startActivity(it);
-    }
+        BaseAdapter adapter = new ArrayAdapter<>(
+                EspecieListarActivity.this, // CONTEXTO/TELA
+                android.R.layout.simple_list_item_single_choice,  // LAYOUT DO ITEM
+                ListUtil.convertToStringList(especies)); // LISTA DE OBJETOS
 
-    /* Editar Usuario*/
-    private void editar() {
-        carregarParams();
-        it = new Intent(this, UsuarioListarActivity.class);
-        params.putString("usuarioOperacao", "Editar");
-        it.putExtras(params);
-        startActivity(it);
+        getListView().setChoiceMode(
+                ListView.CHOICE_MODE_SINGLE);
+
+        setListAdapter(adapter);
     }
 
     /* Recuperar params */
@@ -102,6 +93,7 @@ public class UsuarioActivity extends Activity {
         it = getIntent();
         params = it.getExtras();
         sessaoVO = new SessaoVO(params.getLong("sessaoId"), params.getString("sessaoUsuario"), params.getInt("sessaoNivel"));
+        operacao = params.getString("especieOperacao");
     }
 
     /* Carregar params */
@@ -110,6 +102,11 @@ public class UsuarioActivity extends Activity {
         params.putLong("sessaoId", sessaoVO.getId());
         params.putString("sessaoUsuario", sessaoVO.getNome());
         params.putInt("sessaoNivel", sessaoVO.getNivel());
+
+        params.putString("especieOperacao", operacao);
+
+        params.putLong("especieID", especieVO.getId());
+        params.putString("especieNome", especieVO.getEspecie());
     }
 
     @Override
@@ -130,11 +127,13 @@ public class UsuarioActivity extends Activity {
         switch (id) {
             case (R.id.action_GUsuarios) :
                 it = new Intent(this, UsuarioActivity.class);
+                carregarParams();
                 it.putExtras(params);
                 startActivity(it);
                 return true;
             case (R.id.action_GFornecedores) :
                 it = new Intent(this, FornecedorActivity.class);
+                carregarParams();
                 it.putExtras(params);
                 startActivity(it);
                 return true;
@@ -144,7 +143,6 @@ public class UsuarioActivity extends Activity {
                 startActivity(it);
                 return true;
         }
-
 
         return super.onOptionsItemSelected(item);
     }

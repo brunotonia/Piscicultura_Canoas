@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/Nome"
-        android:id="@+id/lblNome"
+        android:id="@+id/lblEspecie"
         android:layout_below="@+id/lblTitulo"
         android:layout_alignParentStart="true"
         android:layout_marginTop="45dp"
@@ -33,8 +33,8 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/txtNome"
-        android:layout_below="@+id/lblNome"
+        android:id="@+id/txtEspecie"
+        android:layout_below="@+id/lblEspecie"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:textColor="@android:color/holo_blue_dark" />
@@ -45,7 +45,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/CpfCnpj"
         android:id="@+id/lblCPF"
-        android:layout_below="@+id/txtNome"
+        android:layout_below="@+id/txtEspecie"
         android:layout_alignParentStart="true"
         android:textColor="@android:color/holo_blue_dark" />
 
@@ -57,7 +57,7 @@
         android:id="@+id/txtCPF"
         android:layout_below="@+id/lblCPF"
         android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/txtNome"
+        android:layout_alignEnd="@+id/txtEspecie"
         android:textColor="@android:color/holo_blue_dark" />
 
     <TextView

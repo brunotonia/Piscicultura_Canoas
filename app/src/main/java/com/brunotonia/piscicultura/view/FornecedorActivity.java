@@ -61,7 +61,6 @@ public class FornecedorActivity extends Activity {
         });
     }
 
-
     /* Recuperar params */
     private void recuperarParams() {
         it = getIntent();
@@ -116,6 +115,11 @@ public class FornecedorActivity extends Activity {
                 return true;
             case (R.id.action_GFornecedores) :
                 it = new Intent(this, FornecedorActivity.class);
+                it.putExtras(params);
+                startActivity(it);
+                return true;
+            case (R.id.action_GEspecies) :
+                it = new Intent(this, EspecieActivity.class);
                 it.putExtras(params);
                 startActivity(it);
                 return true;

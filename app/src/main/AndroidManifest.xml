@@ -48,6 +48,18 @@
             android:name=".view.UsuarioAlterarSenhaActivity"
             android:label="@string/title_activity_usuario_alterar_senha" >
         </activity>
+        <activity
+            android:name=".view.EspecieActivity"
+            android:label="@string/title_activity_lote_especie" >
+        </activity>
+        <activity
+            android:name=".view.EspecieListarActivity"
+            android:label="@string/title_activity_lote_especie_listar" >
+        </activity>
+        <activity
+            android:name=".view.EspecieAdicionarActivity"
+            android:label="@string/title_activity_especie_adicionar" >
+        </activity>
     </application>
 
 </manifest>

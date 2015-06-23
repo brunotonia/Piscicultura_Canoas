@@ -33,4 +33,11 @@
     <string name="Email">E-Mail</string>
     <string name="Telefone">Telefone</string>
     <string name="Contato">Contato</string>
+    <string name="title_activity_lote_especie">LoteEspecieActivity</string>
+    <string name="GerenciarEspecies">Gerenciar Espécies</string>
+    <string name="AdicionarEspecie">Adicionar Espécie</string>
+    <string name="EditarEspecie">Editar Espécie</string>
+    <string name="title_activity_lote_especie_listar">LoteEspecieListarActivity</string>
+    <string name="title_activity_especie_adicionar">EspecieAdicionarActivity</string>
+    <string name="Especie">Especie</string>
 </resources>

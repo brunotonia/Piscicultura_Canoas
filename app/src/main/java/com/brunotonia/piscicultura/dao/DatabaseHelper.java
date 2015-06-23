@@ -8,7 +8,7 @@ import com.brunotonia.piscicultura.constants.BiometriaConstantes;
 import com.brunotonia.piscicultura.constants.DatabaseConstantes;
 import com.brunotonia.piscicultura.constants.FornecedorConstantes;
 import com.brunotonia.piscicultura.constants.LoteConstantes;
-import com.brunotonia.piscicultura.constants.LoteEspecieConstantes;
+import com.brunotonia.piscicultura.constants.EspecieConstantes;
 import com.brunotonia.piscicultura.constants.LoteEtapaConstantes;
 import com.brunotonia.piscicultura.constants.LoteTanqueConstantes;
 import com.brunotonia.piscicultura.constants.LoteTanquePerdasConstantes;
@@ -63,10 +63,10 @@ public class DatabaseHelper implements Serializable {
 
             db.execSQL(FornecedorConstantes.CREATE_TABLE);
 
-            db.execSQL(LoteEspecieConstantes.CREATE_TABLE);
-            db.execSQL(LoteEspecieConstantes.INSERT_ESPECIE1);
-            db.execSQL(LoteEspecieConstantes.INSERT_ESPECIE2);
-            db.execSQL(LoteEspecieConstantes.INSERT_ESPECIE3);
+            db.execSQL(EspecieConstantes.CREATE_TABLE);
+            db.execSQL(EspecieConstantes.INSERT_ESPECIE1);
+            db.execSQL(EspecieConstantes.INSERT_ESPECIE2);
+            db.execSQL(EspecieConstantes.INSERT_ESPECIE3);
 
             db.execSQL(LoteEtapaConstantes.CREATE_TABLE);
             db.execSQL(LoteEtapaConstantes.INSERT_ETAPA1);
@@ -96,7 +96,7 @@ public class DatabaseHelper implements Serializable {
             db.execSQL(UsuarioEstadoConstantes.DROP_TABLE);
             db.execSQL(UsuarioNivelConstantes.DROP_TABLE);
             db.execSQL(LoteTanquePerdasConstantes.DROP_TABLE);
-            db.execSQL(LoteEspecieConstantes.DROP_TABLE);
+            db.execSQL(EspecieConstantes.DROP_TABLE);
             db.execSQL(LoteEtapaConstantes.DROP_TABLE);
             //db.execSQL(RacaoTipoConstantes.DROP_TABLE);
             //db.execSQL(ArracoamentoTanqueConstantes.DROP_TABLE);
