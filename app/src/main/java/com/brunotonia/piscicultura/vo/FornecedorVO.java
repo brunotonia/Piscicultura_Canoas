@@ -84,4 +84,5 @@ public class FornecedorVO {
     public void setContato(String contato) {
         this.contato = contato;
     }
+
 }

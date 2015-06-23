@@ -37,7 +37,7 @@ public class TanqueDAO {
         values.put(TanqueConstantes.COLUMN_LINHA, tanqueVO.getLinha());
         values.put(TanqueConstantes.COLUMN_COLUNA, tanqueVO.getColuna());
 
-        String busca = UsuarioConstantes.COLUMN_ID + " =? ";
+        String busca = TanqueConstantes.COLUMN_ID + " =? ";
         String[] dados = new String[] {tanqueVO.getId().toString()};
 
         Integer l = db.update(TanqueConstantes.TABLE_NAME, values, busca, dados);

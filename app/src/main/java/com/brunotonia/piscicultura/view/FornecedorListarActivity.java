@@ -26,7 +26,6 @@ public class FornecedorListarActivity extends Activity {
 
         /* Recupera params */
         recuperarParams();
-        carregarParams();
 
         /* Inicializa Elementos de Interface */
     }
@@ -64,11 +63,13 @@ public class FornecedorListarActivity extends Activity {
         switch (id) {
             case (R.id.action_GUsuarios) :
                 it = new Intent(this, UsuarioActivity.class);
+                carregarParams();
                 it.putExtras(params);
                 startActivity(it);
                 return true;
             case (R.id.action_GFornecedores) :
                 it = new Intent(this, FornecedorActivity.class);
+                carregarParams();
                 it.putExtras(params);
                 startActivity(it);
                 return true;

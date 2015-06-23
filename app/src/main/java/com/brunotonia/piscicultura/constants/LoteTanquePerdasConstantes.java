@@ -14,7 +14,7 @@ public interface LoteTanquePerdasConstantes {
             "[" + COLUMN_LTANQUE  + "] INTEGER NOT NULL, " +
             "[" + COLUMN_DATA     + "] TEXT NOT NULL, " +
             "[" + COLUMN_OBS      + "] TEXT, " +
-            "FOREIGN KEY([" + COLUMN_LTANQUE +"]) REFERENCES " + LoteTanqueContantes.TABLE_NAME +
+            "FOREIGN KEY([" + COLUMN_LTANQUE +"]) REFERENCES " + LoteTanqueConstantes.TABLE_NAME +
             "(" +  TanqueEstadoContantes.COLUMN_ID + "))";
 
     String DROP_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;

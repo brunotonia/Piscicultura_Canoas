@@ -41,7 +41,7 @@ public class FornecedorDAO {
         values.put(FornecedorConstantes.COLUMN_TELEFONE, fornecedorVO.getTelefone());
         values.put(FornecedorConstantes.COLUMN_CONTATO, fornecedorVO.getContato());
 
-        String busca = UsuarioConstantes.COLUMN_ID + " =? ";
+        String busca = FornecedorConstantes.COLUMN_ID + " =? ";
         String[] dados = new String[] {fornecedorVO.getId().toString()};
 
         Integer l = db.update(FornecedorConstantes.TABLE_NAME, values, busca, dados);

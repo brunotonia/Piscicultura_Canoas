@@ -4,12 +4,13 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.brunotonia.piscicultura.constants.BiometriaConstantes;
 import com.brunotonia.piscicultura.constants.DatabaseConstantes;
 import com.brunotonia.piscicultura.constants.FornecedorConstantes;
 import com.brunotonia.piscicultura.constants.LoteConstantes;
 import com.brunotonia.piscicultura.constants.LoteEspecieConstantes;
 import com.brunotonia.piscicultura.constants.LoteEtapaConstantes;
-import com.brunotonia.piscicultura.constants.LoteTanqueContantes;
+import com.brunotonia.piscicultura.constants.LoteTanqueConstantes;
 import com.brunotonia.piscicultura.constants.LoteTanquePerdasConstantes;
 import com.brunotonia.piscicultura.constants.TanqueConstantes;
 import com.brunotonia.piscicultura.constants.TanqueEstadoContantes;
@@ -82,15 +83,15 @@ public class DatabaseHelper implements Serializable {
 
             db.execSQL(TanqueConstantes.CREATE_TABLE);
 
-            db.execSQL(LoteTanqueContantes.CREATE_TABLE);
-
+            db.execSQL(LoteTanqueConstantes.CREATE_TABLE);
+            db.execSQL(BiometriaConstantes.CREATE_TABLE);
             db.execSQL(LoteTanquePerdasConstantes.CREATE_TABLE);
 
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            //db.execSQL(BiometriaConstantes.DROP_TABLE);
+            db.execSQL(BiometriaConstantes.DROP_TABLE);
             db.execSQL(UsuarioConstantes.DROP_TABLE);
             db.execSQL(UsuarioEstadoConstantes.DROP_TABLE);
             db.execSQL(UsuarioNivelConstantes.DROP_TABLE);
@@ -102,7 +103,7 @@ public class DatabaseHelper implements Serializable {
             //db.execSQL(ArracoamentoConstantes.DROP_TABLE);
             db.execSQL(TanqueEstadoContantes.DROP_TABLE);
             db.execSQL(TanqueConstantes.DROP_TABLE);
-            db.execSQL(LoteTanqueContantes.DROP_TABLE);
+            db.execSQL(LoteTanqueConstantes.DROP_TABLE);
             db.execSQL(LoteConstantes.DROP_TABLE);
             db.execSQL(FornecedorConstantes.DROP_TABLE);
 
