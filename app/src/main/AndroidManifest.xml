@@ -72,6 +72,14 @@
             android:name=".view.TanqueAlocarActivity"
             android:label="@string/title_activity_tanque_alocar" >
         </activity>
+        <activity
+            android:name=".view.LoteAdicionarActivity$LoteGerenciarActivity"
+            android:label="@string/title_activity_lote_gerenciar" >
+        </activity>
+        <activity
+            android:name=".view.LoteListarActivity"
+            android:label="@string/title_activity_lote_listar" >
+        </activity>
     </application>
 
 </manifest>

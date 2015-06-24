@@ -4,40 +4,39 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.brunotonia.piscicultura.dao.DatabaseHelper;
-import com.brunotonia.piscicultura.dao.LoteTanqueDAO;
-import com.brunotonia.piscicultura.vo.LoteTanqueVO;
+import com.brunotonia.piscicultura.dao.LoteDAO;
+import com.brunotonia.piscicultura.vo.LoteVO;
 
 import java.util.List;
-
-public class LoteTanqueBO {
+public class LoteBO {
 
     /* Singleton */
-    private static LoteTanqueBO instance = null;
+    private static LoteBO instance = null;
 
-    private LoteTanqueDAO loteTanqueDAO = null;
+    private LoteDAO loteDAO = null;
 
-    private LoteTanqueBO() {
-        loteTanqueDAO = new LoteTanqueDAO();
+    private LoteBO() {
+        loteDAO = new LoteDAO();
     }
 
-    public static LoteTanqueBO getInstance() {
+    public static LoteBO getInstance() {
         if (instance == null) {
-            instance = new LoteTanqueBO();
+            instance = new LoteBO();
         }
         return instance;
     }
 
-    public boolean adicionar(Context context, LoteTanqueVO loteTanqueVO) throws Exception {
+    public Long adicionar(Context context, LoteVO loteVO) throws Exception {
         /* Variáveis do BD */
         DatabaseHelper helper = new DatabaseHelper(context);
         SQLiteDatabase db = helper.open();
 
         /* Variáveis do Método*/
-        boolean b = false;
+        Long b = -1L;
 
         try {
             db.beginTransaction();
-            b = loteTanqueDAO.adicionar(db, loteTanqueVO);
+            b = loteDAO.adicionar(db, loteVO);
             db.setTransactionSuccessful();
         } catch (Exception e) {
             throw e;
@@ -49,7 +48,11 @@ public class LoteTanqueBO {
         return b;
     }
 
-    public boolean editar(Context context, LoteTanqueVO loteTanqueVO) throws Exception {
+    public boolean validaAdicao (Long resultadoAdicionar) {
+        return resultadoAdicionar  != -1L;
+    }
+
+    public boolean editar(Context context, LoteVO loteVO) throws Exception {
 
         /* Variáveis do BD */
         DatabaseHelper helper = new DatabaseHelper(context);
@@ -59,7 +62,7 @@ public class LoteTanqueBO {
         boolean b = false;
         try {
             db.beginTransaction();
-            b = loteTanqueDAO.editar(db, loteTanqueVO);
+            b = loteDAO.editar(db, loteVO);
             db.setTransactionSuccessful();
         } catch (Exception e) {
             e.printStackTrace();
@@ -71,18 +74,18 @@ public class LoteTanqueBO {
         return b;
     }
 
-    public List<LoteTanqueVO> selecionar(Context context) throws Exception {
+    public List<LoteVO> selecionarTodos(Context context) throws Exception {
 
         /* Variáveis do BD */
         DatabaseHelper helper = new DatabaseHelper(context);
         SQLiteDatabase db = helper.open();
 
         /* Variáveis do Método*/
-        List<LoteTanqueVO> loteTanques = null;
+        List<LoteVO> lotes = null;
 
         try {
             db.beginTransaction();
-            loteTanques = loteTanqueDAO.selecionar(db);
+            lotes = loteDAO.selecionarTodos(db);
             db.setTransactionSuccessful();
         } catch (Exception e) {
             throw e;
@@ -91,7 +94,29 @@ public class LoteTanqueBO {
             helper.close();
         }
 
-        return loteTanques;
+        return lotes;
     }
 
+    public List<LoteVO> selecionarConcluidos(Context context) throws Exception {
+
+        /* Variáveis do BD */
+        DatabaseHelper helper = new DatabaseHelper(context);
+        SQLiteDatabase db = helper.open();
+
+        /* Variáveis do Método*/
+        List<LoteVO> lotes = null;
+
+        try {
+            db.beginTransaction();
+            lotes = loteDAO.selecionarConcluidos(db);
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            db.endTransaction();
+            helper.close();
+        }
+
+        return lotes;
+    }
 }

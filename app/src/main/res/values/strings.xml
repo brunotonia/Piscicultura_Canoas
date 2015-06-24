@@ -49,6 +49,10 @@
     <string name="Fornecedor">Fornecedor</string>
     <string name="Individuos">Indivíduos</string>
     <string name="Data">Data</string>
-    <string name="title_activity_lote_adicionar">LoteAdicionarActivity</string>
-    <string name="title_activity_tanque_alocar">TanqueAlocarActivity</string>
+    <string name="title_activity_lote_adicionar">Piscicultura Canoas</string>
+    <string name="title_activity_tanque_alocar">Piscicultura Canoas</string>
+    <string name="title_activity_lote_gerenciar">Piscicultura Canoas</string>
+    <string name="title_activity_lote_listar">Piscicultura Canoas</string>
+    <string name="EditarLote">Editar Lote</string>
+    <string name="Editar">Editar</string>
 </resources>

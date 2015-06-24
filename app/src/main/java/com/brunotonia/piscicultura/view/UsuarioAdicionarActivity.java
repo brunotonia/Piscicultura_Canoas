@@ -177,8 +177,8 @@ public class UsuarioAdicionarActivity extends Activity {
     private void alteraRotulos() {
         if(operacao.equals("Editar")) {
             /* Rótulos e Botões */
-            lblTitulo.setText("Editar Usuario");
-            btnAdicionar.setText(R.string.EditarUsuario);
+            lblTitulo.setText(R.string.Editar);
+            btnAdicionar.setText(R.string.Editar);
             /* Povoa Campos da Interface */
             id = new Long (params.getLong("usuarioID"));
             Long nivel = params.getLong("usuarioTipo");
