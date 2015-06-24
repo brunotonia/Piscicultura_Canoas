@@ -1,0 +1,128 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.brunotonia.piscicultura.view.LoteAdicionarActivity"
+    android:background="@android:color/white">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/AdicionarLote"
+        android:id="@+id/lblTitulo"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/holo_blue_dark" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/Numero"
+        android:id="@+id/lblNumero"
+        android:layout_below="@+id/lblTitulo"
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/holo_blue_dark"
+        android:layout_marginTop="30dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/txtNumero"
+        android:layout_below="@+id/lblNumero"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/Especie"
+        android:id="@+id/lblEspecie"
+        android:layout_below="@+id/txtNumero"
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/holo_blue_dark" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spnEspecie"
+        android:layout_below="@+id/lblEspecie"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/Fornecedor"
+        android:id="@+id/lblFornecedor"
+        android:layout_below="@+id/spnEspecie"
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/holo_blue_dark" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spnFornecedor"
+        android:layout_below="@+id/lblFornecedor"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/Individuos"
+        android:id="@+id/lblIndividuos"
+        android:layout_below="@+id/spnFornecedor"
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/holo_blue_dark" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/txtIndividuos"
+        android:layout_below="@+id/lblIndividuos"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/spnFornecedor"
+        android:textColor="@android:color/holo_blue_dark" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/Data"
+        android:id="@+id/lblData"
+        android:layout_below="@+id/txtIndividuos"
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/holo_blue_dark" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/txtData"
+        android:layout_below="@+id/lblData"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/txtIndividuos" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/AdicionarLote"
+        android:id="@+id/btnAdicionar"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="@android:color/white"
+        android:background="@android:color/holo_blue_dark" />
+
+</RelativeLayout>

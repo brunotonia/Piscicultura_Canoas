@@ -9,7 +9,7 @@
     <string name="Senha">Senha</string>
     <string name="Usuario">Usuário</string>
     <string name="title_activity_main">Piscicultura Canoas</string>
-    <string name="title_activity_usuario">UsuarioActivity</string>
+    <string name="title_activity_usuario">Piscicultura Canoas</string>
     <string name="GerenciarUsuarios">Gerenciar Usuários</string>
     <string name="AdicionarUsuario">Adicionar Usuário</string>
     <string name="EditarUsuario">Editar Usuário</string>
@@ -33,11 +33,22 @@
     <string name="Email">E-Mail</string>
     <string name="Telefone">Telefone</string>
     <string name="Contato">Contato</string>
-    <string name="title_activity_lote_especie">LoteEspecieActivity</string>
+    <string name="title_activity_lote_especie">Piscicultura Canoas</string>
     <string name="GerenciarEspecies">Gerenciar Espécies</string>
     <string name="AdicionarEspecie">Adicionar Espécie</string>
     <string name="EditarEspecie">Editar Espécie</string>
-    <string name="title_activity_lote_especie_listar">LoteEspecieListarActivity</string>
-    <string name="title_activity_especie_adicionar">EspecieAdicionarActivity</string>
+    <string name="title_activity_lote_especie_listar">Piscicultura Canoas</string>
+    <string name="title_activity_especie_adicionar">Piscicultura Canoas</string>
     <string name="Especie">Especie</string>
+    <string name="title_activity_lote">Piscicultura Canoas</string>
+    <string name="AdicionarLote">Adicionar Lote</string>
+    <string name="GerenciarLotes">Gerenciar Lotes</string>
+    <string name="AdministrarLote">Administrar Lote</string>
+    <string name="LogoLote">Logo Lote</string>
+    <string name="Numero">Número</string>
+    <string name="Fornecedor">Fornecedor</string>
+    <string name="Individuos">Indivíduos</string>
+    <string name="Data">Data</string>
+    <string name="title_activity_lote_adicionar">LoteAdicionarActivity</string>
+    <string name="title_activity_tanque_alocar">TanqueAlocarActivity</string>
 </resources>

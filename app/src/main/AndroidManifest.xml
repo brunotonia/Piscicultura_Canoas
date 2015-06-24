@@ -60,6 +60,18 @@
             android:name=".view.EspecieAdicionarActivity"
             android:label="@string/title_activity_especie_adicionar" >
         </activity>
+        <activity
+            android:name=".view.LoteActivity"
+            android:label="@string/title_activity_lote" >
+        </activity>
+        <activity
+            android:name=".view.LoteAdicionarActivity"
+            android:label="@string/title_activity_lote_adicionar" >
+        </activity>
+        <activity
+            android:name=".view.TanqueAlocarActivity"
+            android:label="@string/title_activity_tanque_alocar" >
+        </activity>
     </application>
 
 </manifest>

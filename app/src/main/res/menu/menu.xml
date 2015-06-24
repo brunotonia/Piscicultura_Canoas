@@ -1,6 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.brunotonia.piscicultura.view.MainActivity">
+    tools:context="com.brunotonia.piscicultura.view.MainActivity"
+    android:background="@android:color/holo_blue_dark">
     <item android:id="@+id/action_GEspecies" android:title="@string/GerenciarEspecies"
         android:orderInCategory="100" android:showAsAction="never" />
     <item android:id="@+id/action_GFornecedores" android:title="@string/GerenciarFornecedores"

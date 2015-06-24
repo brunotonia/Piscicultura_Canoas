@@ -111,7 +111,7 @@ public class EspecieAdicionarActivity extends Activity {
 
     /* Altera Rótulos em caso de Edição */
     private void alteraRotulos() {
-        if(operacao.equals("Editar")) {
+        if(operacao.equals("editar")) {
             /* Rótulos e Botões */
             lblTitulo.setText(R.string.EditarEspecie);
             btnAdicionar.setText(R.string.EditarEspecie);
