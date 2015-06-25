@@ -49,6 +49,28 @@ public class TanqueBO {
         return b;
     }
 
+    public boolean alterarEstado(Context context, Long id, Long novoEstado) throws Exception {
+
+        /* Variáveis do BD */
+        DatabaseHelper helper = new DatabaseHelper(context);
+        SQLiteDatabase db = helper.open();
+
+        /* Variáveis do Método*/
+        boolean b = false;
+        try {
+            db.beginTransaction();
+            b = tanqueDAO.alterarEstado(db, id, novoEstado);
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.endTransaction();
+            helper.close();
+        }
+
+        return b;
+    }
+
     public boolean editar(Context context, TanqueVO tanqueVO) throws Exception {
 
         /* Variáveis do BD */
@@ -92,5 +114,51 @@ public class TanqueBO {
         }
 
         return tanques;
+    }
+
+    public List<TanqueVO> selecionarDisponiveis(Context context, Long etapa) throws Exception {
+
+        /* Variáveis do BD */
+        DatabaseHelper helper = new DatabaseHelper(context);
+        SQLiteDatabase db = helper.open();
+
+        /* Variáveis do Método*/
+        List<TanqueVO> tanques = null;
+
+        try {
+            db.beginTransaction();
+            tanques = tanqueDAO.selecionarDisponiveis(db, etapa);
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            db.endTransaction();
+            helper.close();
+        }
+
+        return tanques;
+    }
+
+    public TanqueVO selecionar(Context context, Integer numero) throws Exception {
+
+        /* Variáveis do BD */
+        DatabaseHelper helper = new DatabaseHelper(context);
+        SQLiteDatabase db = helper.open();
+
+        /* Variáveis do Método*/
+        TanqueVO tanqueVO = null;
+
+        try {
+            db.beginTransaction();
+            tanqueVO = tanqueDAO.selecionar(db, numero);
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            db.endTransaction();
+            helper.close();
+        }
+
+        return tanqueVO;
     }
 }

@@ -1,13 +1,25 @@
 package com.brunotonia.piscicultura.view;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import com.brunotonia.piscicultura.R;
+import com.brunotonia.piscicultura.vo.SessaoVO;
 
 public class LoteGerenciarActivity extends Activity {
+
+    /* Variáveis de Sessão */
+    private Intent it = null;
+    private Bundle params = null;
+    private SessaoVO sessaoVO = null;
+
+    /* Variáveis dos Elementos de Tela */
+    private Button btnAdicionar = null;
+    private Button btnEditar = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +42,22 @@ public class LoteGerenciarActivity extends Activity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_GEspecies) {
-            return true;
+        switch (id) {
+            case (R.id.action_GUsuarios) :
+                it = new Intent(this, UsuarioActivity.class);
+                it.putExtras(params);
+                startActivity(it);
+                return true;
+            case (R.id.action_GFornecedores) :
+                it = new Intent(this, FornecedorActivity.class);
+                it.putExtras(params);
+                startActivity(it);
+                return true;
+            case (R.id.action_GEspecies) :
+                it = new Intent(this, EspecieActivity.class);
+                it.putExtras(params);
+                startActivity(it);
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

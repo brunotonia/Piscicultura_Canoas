@@ -12,12 +12,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.brunotonia.piscicultura.R;
 import com.brunotonia.piscicultura.bo.EspecieBO;
 import com.brunotonia.piscicultura.bo.FornecedorBO;
+import com.brunotonia.piscicultura.bo.LoteBO;
 import com.brunotonia.piscicultura.vo.EspecieVO;
 import com.brunotonia.piscicultura.vo.FornecedorVO;
+import com.brunotonia.piscicultura.vo.LoteVO;
 import com.brunotonia.piscicultura.vo.SessaoVO;
 
 import java.util.ArrayList;
@@ -74,7 +77,40 @@ public class LoteAdicionarActivity extends Activity {
 
         });
 
+    }
 
+    /* Adicona ou Edita Usuários */
+    private void adicionar(Context context) {
+        LoteBO loteBO = LoteBO.getInstance();
+        LoteVO loteVO = null;
+        try {
+            if (operacao.equals("adicionar")) {
+                id = loteBO.adicionar(context, loteVO);
+                if (loteBO.validaAdicao(id)) {
+                    it = new Intent(this, TanqueAlocarActivity.class);
+                    carregarParams();
+                    params.putLong("loteID", id);
+                    params.putInt("loteEtapa", 0);
+                    it.putExtras(params);
+                    startActivity(it);
+                    Toast.makeText(this, "Lote adicionado com sucesso", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(this, "Não foi possível adicionar o Lote", Toast.LENGTH_LONG).show();
+                }
+            } else {
+                if (loteBO.editar(context, loteVO)) {
+                    it = new Intent(this, LoteGerenciarActivity.class);
+                    carregarParams();
+                    it.putExtras(params);
+                    startActivity(it);
+                    Toast.makeText(this, "Lote editado com sucesso", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(this, "Não foi possível editar o Lote", Toast.LENGTH_LONG).show();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /* Povoar os Spinners */

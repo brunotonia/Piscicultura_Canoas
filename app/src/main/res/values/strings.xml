@@ -55,4 +55,7 @@
     <string name="title_activity_lote_listar">Piscicultura Canoas</string>
     <string name="EditarLote">Editar Lote</string>
     <string name="Editar">Editar</string>
+    <string name="AlocarTanque">Alocar Tanque</string>
+    <string name="AlocarTanques">Alocar Tanques</string>
+    <string name="Tanque">Tanques</string>
 </resources>

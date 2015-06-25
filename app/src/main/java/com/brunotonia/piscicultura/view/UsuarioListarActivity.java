@@ -143,7 +143,6 @@ public class UsuarioListarActivity extends ListActivity {
                 return true;
         }
 
-
         return super.onOptionsItemSelected(item);
     }
 }

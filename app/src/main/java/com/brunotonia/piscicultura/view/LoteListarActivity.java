@@ -1,13 +1,25 @@
 package com.brunotonia.piscicultura.view;
 
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
 
 import com.brunotonia.piscicultura.R;
+import com.brunotonia.piscicultura.bo.LoteBO;
+import com.brunotonia.piscicultura.bo.UsuarioBO;
+import com.brunotonia.piscicultura.util.ListUtil;
+import com.brunotonia.piscicultura.vo.LoteVO;
 import com.brunotonia.piscicultura.vo.SessaoVO;
+import com.brunotonia.piscicultura.vo.UsuarioVO;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoteListarActivity extends ListActivity {
 
@@ -17,10 +29,63 @@ public class LoteListarActivity extends ListActivity {
     private SessaoVO sessaoVO = null;
     private String operacao = null;
 
+    /* Variáveis dos Elementos de Tela */
+    private List<LoteVO> lotes = new ArrayList<>();
+    private LoteVO loteVO = null;
+    private LoteBO loteBO = LoteBO.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_lote_listar);
+
+        /* Recupera params */
+        recuperarParams();
+
+        /* Gera a Lista */
+        try {
+            carregarUsuarios(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /* Gera lista de Usuários */
+    private void carregarUsuarios(Context context) throws Exception {
+        lotes = loteBO.selecionarTodos(context);
+
+        BaseAdapter adapter = new ArrayAdapter<>(
+                LoteListarActivity.this, // CONTEXTO/TELA
+                android.R.layout.simple_list_item_single_choice,  // LAYOUT DO ITEM
+                ListUtil.convertToStringList(lotes)); // LISTA DE OBJETOS
+
+        getListView().setChoiceMode(
+                ListView.CHOICE_MODE_SINGLE);
+
+        setListAdapter(adapter);
+    }
+
+    /* Recuperar params */
+    private void recuperarParams() {
+        it = getIntent();
+        params = it.getExtras();
+        sessaoVO = new SessaoVO(params.getLong("sessaoId"), params.getString("sessaoUsuario"), params.getInt("sessaoNivel"));
+    }
+
+    /* Carregar params */
+    private void carregarParams() {
+        params = new Bundle();
+        params.putLong("sessaoId", sessaoVO.getId());
+        params.putString("sessaoUsuario", sessaoVO.getNome());
+        params.putInt("sessaoNivel", sessaoVO.getNivel());
+
+        params.putLong("loteID", loteVO.getId());
+        params.putLong("loteEspecie", loteVO.getEspecie());
+        params.putLong("loteFornecedor", loteVO.getFornecedor());
+        params.putLong("loteEtapa", loteVO.getEtapa());
+        params.putInt("loteIndvInicial", loteVO.getIndv_final());
+        params.putString("loteDataInicial", loteVO.getData_inicio());
     }
 
     @Override

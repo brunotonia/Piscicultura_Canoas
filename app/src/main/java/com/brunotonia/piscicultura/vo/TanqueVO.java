@@ -4,12 +4,12 @@ public class TanqueVO {
 
     private Long id;
     private Integer numero;
-    private Integer etapa;
+    private Long etapa;
     private Integer estado;
     private Integer linha;
     private Integer coluna;
 
-    public TanqueVO(Integer numero, Integer etapa, Integer estado, Integer linha, Integer coluna) {
+    public TanqueVO(Integer numero, Long etapa, Integer estado, Integer linha, Integer coluna) {
         this.numero = numero;
         this.etapa = etapa;
         this.estado = estado;
@@ -17,7 +17,7 @@ public class TanqueVO {
         this.coluna = coluna;
     }
 
-    public TanqueVO(Long id, Integer numero, Integer etapa, Integer estado, Integer linha, Integer coluna) {
+    public TanqueVO(Long id, Integer numero, Long etapa, Integer estado, Integer linha, Integer coluna) {
         this.id = id;
         this.numero = numero;
         this.etapa = etapa;
@@ -42,11 +42,11 @@ public class TanqueVO {
         this.numero = numero;
     }
 
-    public Integer getEtapa() {
+    public Long getEtapa() {
         return etapa;
     }
 
-    public void setEtapa(Integer etapa) {
+    public void setEtapa(Long etapa) {
         this.etapa = etapa;
     }
 

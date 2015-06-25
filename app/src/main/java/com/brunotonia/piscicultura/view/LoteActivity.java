@@ -1,24 +1,102 @@
 package com.brunotonia.piscicultura.view;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.brunotonia.piscicultura.R;
+import com.brunotonia.piscicultura.vo.SessaoVO;
 
 public class LoteActivity extends Activity {
+
+    /* Variáveis de Sessão */
+    private Intent it = null;
+    private Bundle params = null;
+    private SessaoVO sessaoVO = null;
+
+    /* Variáveis dos Elementos de Tela */
+    private Button btnAdicionar = null;
+    private Button btnEditar = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lote);
+
+        /* Recupera params */
+        recuperarParams();
+
+        /* Inicializa Elementos de Interface */
+        btnAdicionar = (Button) findViewById(R.id.btnAdicionar);
+        btnEditar = (Button) findViewById(R.id.btnEditar);
+
+        /* Adiciona Usuário */
+        btnAdicionar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (sessaoVO.isAdministrador()) {
+                    adicionar();
+                } else {
+                    Toast.makeText(LoteActivity.this, "Usuário sem permissão de acesso", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        /* Edita Usuário */
+        btnEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (sessaoVO.isAdministrador()) {
+                    editar();
+                } else {
+                    Toast.makeText(LoteActivity.this, "Usuário sem permissão de acesso", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
+    /* Adicionar Usuario*/
+    private void adicionar() {
+        carregarParams();
+        it = new Intent(this, LoteAdicionarActivity.class);
+        params.putString("loteOperacao", "Adicionar");
+        it.putExtras(params);
+        startActivity(it);
+    }
+
+    /* Editar Usuario*/
+    private void editar() {
+        carregarParams();
+        it = new Intent(this, LoteListarActivity.class);
+        params.putString("usuarioOperacao", "Editar");
+        it.putExtras(params);
+        startActivity(it);
+    }
+
+    /* Recuperar params */
+    private void recuperarParams() {
+        it = getIntent();
+        params = it.getExtras();
+        sessaoVO = new SessaoVO(params.getLong("sessaoId"), params.getString("sessaoUsuario"), params.getInt("sessaoNivel"));
+    }
+
+    /* Carregar params */
+    private void carregarParams() {
+        params = new Bundle();
+        params.putLong("sessaoId", sessaoVO.getId());
+        params.putString("sessaoUsuario", sessaoVO.getNome());
+        params.putInt("sessaoNivel", sessaoVO.getNivel());
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_lote, menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 
@@ -30,8 +108,22 @@ public class LoteActivity extends Activity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+            case (R.id.action_GUsuarios) :
+                it = new Intent(this, UsuarioActivity.class);
+                it.putExtras(params);
+                startActivity(it);
+                return true;
+            case (R.id.action_GFornecedores) :
+                it = new Intent(this, FornecedorActivity.class);
+                it.putExtras(params);
+                startActivity(it);
+                return true;
+            case (R.id.action_GEspecies) :
+                it = new Intent(this, EspecieActivity.class);
+                it.putExtras(params);
+                startActivity(it);
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

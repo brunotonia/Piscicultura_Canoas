@@ -41,6 +41,7 @@ public class LoteTanqueDAO {
         return (l > 0);
     }
 
+
     public List<LoteTanqueVO> selecionar(SQLiteDatabase db) throws Exception {
         List<LoteTanqueVO> loteTanques = new ArrayList<LoteTanqueVO>();
 
