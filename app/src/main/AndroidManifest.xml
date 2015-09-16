@@ -73,7 +73,7 @@
             android:label="@string/title_activity_tanque_alocar" >
         </activity>
         <activity
-            android:name=".view.LoteAdicionarActivity$LoteGerenciarActivity"
+            android:name=".view.LoteGerenciarActivity"
             android:label="@string/title_activity_lote_gerenciar" >
         </activity>
         <activity

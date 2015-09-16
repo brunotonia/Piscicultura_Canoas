@@ -12,7 +12,9 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.brunotonia.piscicultura.R;
 import com.brunotonia.piscicultura.vo.SessaoVO;
@@ -25,17 +27,42 @@ public class MainActivity extends Activity {
     private SessaoVO sessaoVO = null;
 
     /* Variáveis dos Elementos de Tela */
+    Button btnLote = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         /* Recupera params */
         recuperarParams();
+
+        /* Inicializa Elementos de Interface */
+        btnLote = (Button) findViewById(R.id.btnLote);
+
+        /* Gerencia Lote */
+        btnLote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (sessaoVO.isAdministrador()) {
+                    gerenciarLote();
+                } else {
+                    Toast.makeText(MainActivity.this, "Usuário sem permissão de acesso", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        /*Carrega Params */
         carregarParams();
 
+    }
+
+    /* Gerenciar  Lote */
+    private void gerenciarLote () {
+        carregarParams();
+        it = new Intent(this, LoteGerenciarActivity.class);
+        it.putExtras(params);
+        startActivity(it);
     }
 
     /* Recuperar params */

@@ -45,8 +45,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/imgLote"
         android:src="@drawable/lote"
+        android:contentDescription="@string/LogoLote"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:contentDescription="@string/LogoLote" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

@@ -25,6 +25,33 @@ public class LoteGerenciarActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lote_gerenciar);
+
+        /* Recupera params */
+        recuperarParams();
+
+        /* Inicializa Elementos de Interface */
+        btnAdicionar = (Button) findViewById(R.id.btnAdicionar);
+        btnEditar = (Button) findViewById(R.id.btnEditar);
+
+
+
+
+    }
+
+
+    /* Recuperar params */
+    private void recuperarParams() {
+        it = getIntent();
+        params = it.getExtras();
+        sessaoVO = new SessaoVO(params.getLong("sessaoId"), params.getString("sessaoUsuario"), params.getInt("sessaoNivel"));
+    }
+
+    /* Carregar params */
+    private void carregarParams() {
+        params = new Bundle();
+        params.putLong("sessaoId", sessaoVO.getId());
+        params.putString("sessaoUsuario", sessaoVO.getNome());
+        params.putInt("sessaoNivel", sessaoVO.getNivel());
     }
 
     @Override
