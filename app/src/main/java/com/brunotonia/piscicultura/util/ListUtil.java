@@ -5,9 +5,8 @@ import java.util.List;
 
 public class ListUtil {
 
-    public static List<String> convertToStringList(
-            List<?> objects) {
-        List<String> newList = new ArrayList<String>();
+    public static List<String> convertToStringList(List<?> objects) {
+        List<String> newList = new ArrayList<>();
 
         if (objects != null && !objects.isEmpty()) {
             for (Object o : objects) {

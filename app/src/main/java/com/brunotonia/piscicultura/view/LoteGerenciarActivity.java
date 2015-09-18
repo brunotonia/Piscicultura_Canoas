@@ -18,8 +18,7 @@ public class LoteGerenciarActivity extends Activity {
     private SessaoVO sessaoVO = null;
 
     /* Variáveis dos Elementos de Tela */
-    private Button btnAdicionar = null;
-    private Button btnEditar = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +29,7 @@ public class LoteGerenciarActivity extends Activity {
         recuperarParams();
 
         /* Inicializa Elementos de Interface */
-        btnAdicionar = (Button) findViewById(R.id.btnAdicionar);
-        btnEditar = (Button) findViewById(R.id.btnEditar);
+
 
 
 

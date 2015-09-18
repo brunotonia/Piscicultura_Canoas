@@ -21,7 +21,7 @@ public class LoteActivity extends Activity {
 
     /* Variáveis dos Elementos de Tela */
     private Button btnAdicionar = null;
-    private Button btnEditar = null;
+    private Button btnGerenciar = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +33,9 @@ public class LoteActivity extends Activity {
 
         /* Inicializa Elementos de Interface */
         btnAdicionar = (Button) findViewById(R.id.btnAdicionar);
-        btnEditar = (Button) findViewById(R.id.btnEditar);
+        btnGerenciar = (Button) findViewById(R.id.btnGerenciar);
 
-        /* Adiciona Usuário */
+        /* Adiciona Lote */
         btnAdicionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,12 +47,12 @@ public class LoteActivity extends Activity {
             }
         });
 
-        /* Edita Usuário */
-        btnEditar.setOnClickListener(new View.OnClickListener() {
+        /* Gerenciar Lote */
+        btnGerenciar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (sessaoVO.isAdministrador()) {
-                    editar();
+                    gerenciar();
                 } else {
                     Toast.makeText(LoteActivity.this, "Usuário sem permissão de acesso", Toast.LENGTH_LONG).show();
                 }
@@ -60,7 +60,7 @@ public class LoteActivity extends Activity {
         });
     }
 
-    /* Adicionar Usuario*/
+    /* Adicionar Lote */
     private void adicionar() {
         carregarParams();
         it = new Intent(this, LoteAdicionarActivity.class);
@@ -69,8 +69,8 @@ public class LoteActivity extends Activity {
         startActivity(it);
     }
 
-    /* Editar Usuario*/
-    private void editar() {
+    /*  Gerenciar Lote */
+    private void gerenciar() {
         carregarParams();
         it = new Intent(this, LoteListarActivity.class);
         params.putString("usuarioOperacao", "Editar");

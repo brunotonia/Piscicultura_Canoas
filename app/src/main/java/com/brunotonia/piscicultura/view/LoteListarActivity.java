@@ -12,11 +12,9 @@ import android.widget.ListView;
 
 import com.brunotonia.piscicultura.R;
 import com.brunotonia.piscicultura.bo.LoteBO;
-import com.brunotonia.piscicultura.bo.UsuarioBO;
 import com.brunotonia.piscicultura.util.ListUtil;
 import com.brunotonia.piscicultura.vo.LoteVO;
 import com.brunotonia.piscicultura.vo.SessaoVO;
-import com.brunotonia.piscicultura.vo.UsuarioVO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,16 +42,16 @@ public class LoteListarActivity extends ListActivity {
 
         /* Gera a Lista */
         try {
-            carregarUsuarios(this);
+            carregarLotes(this);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    /* Gera lista de Usuários */
-    private void carregarUsuarios(Context context) throws Exception {
-        lotes = loteBO.selecionarTodos(context);
+    /* Gera lista de Lotes */
+    private void carregarLotes(Context context) throws Exception {
+        lotes = loteBO.selecionarAtivos(context);
 
         BaseAdapter adapter = new ArrayAdapter<>(
                 LoteListarActivity.this, // CONTEXTO/TELA

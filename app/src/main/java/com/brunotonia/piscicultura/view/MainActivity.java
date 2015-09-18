@@ -1,19 +1,12 @@
 package com.brunotonia.piscicultura.view;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.AttributeSet;
-import android.view.InflateException;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.brunotonia.piscicultura.R;
@@ -60,7 +53,7 @@ public class MainActivity extends Activity {
     /* Gerenciar  Lote */
     private void gerenciarLote () {
         carregarParams();
-        it = new Intent(this, LoteGerenciarActivity.class);
+        it = new Intent(this, LoteActivity.class);
         it.putExtras(params);
         startActivity(it);
     }

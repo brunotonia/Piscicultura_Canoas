@@ -43,7 +43,13 @@ public class LoteAdicionarActivity extends Activity {
     private Spinner spnFornecedor = null;
     private EditText txtIndividuos = null;
     private EditText txtData = null;
-    private Button btnAdicionar = null;
+    private Button btnExecutar = null;
+
+    /* Demais Variáveis */
+    List<String> lista = new ArrayList<>();
+    List<EspecieVO> listaEspecies = null;
+    List<FornecedorVO> listaFornecedores = null;
+    LoteVO loteVO = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +66,7 @@ public class LoteAdicionarActivity extends Activity {
         spnFornecedor = (Spinner) findViewById(R.id.spnFornecedor);
         txtIndividuos = (EditText) findViewById(R.id.txtIndividuos);
         txtData = (EditText) findViewById(R.id.txtData);
-        btnAdicionar = (Button) findViewById(R.id.btnAdicionar);
+        btnExecutar = (Button) findViewById(R.id.btnAdicionar);
 
         /* Altera Rótulos em caso de Edição */
         alteraRotulos();
@@ -69,7 +75,7 @@ public class LoteAdicionarActivity extends Activity {
         povoarSpinners(this);
 
         /* listener btnEntrar */
-        btnAdicionar.setOnClickListener(new View.OnClickListener() {
+        btnExecutar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 adicionar(LoteAdicionarActivity.this);
@@ -79,12 +85,18 @@ public class LoteAdicionarActivity extends Activity {
 
     }
 
-    /* Adicona ou Edita Usuários */
+    /* Adicona ou Edita Lotes */
     private void adicionar(Context context) {
         LoteBO loteBO = LoteBO.getInstance();
-        LoteVO loteVO = null;
+        /* loteVO sets*/
+        loteVO.setNumero(new Integer(txtNumero.getText().toString()));
+        loteVO.setEspecie(listaEspecies.get(spnEspecie.getSelectedItemPosition()).getId());
+        loteVO.setFornecedor(listaEspecies.get(spnFornecedor.getSelectedItemPosition()).getId());
+        loteVO.setIndv_inicio(new Integer(txtIndividuos.getText().toString()));
+        loteVO.setData_inicio(txtData.getText().toString());
         try {
-            if (operacao.equals("adicionar")) {
+            if (operacao.equals("Adicionar")) {
+                /* Grava no BD e recupera a Primary Key */
                 id = loteBO.adicionar(context, loteVO);
                 if (loteBO.validaAdicao(id)) {
                     it = new Intent(this, TanqueAlocarActivity.class);
@@ -115,9 +127,7 @@ public class LoteAdicionarActivity extends Activity {
 
     /* Povoar os Spinners */
     private void povoarSpinners(Context context) {
-        List<String> lista = new ArrayList<>();
-        List<EspecieVO> listaEspecies = null;
-        List<FornecedorVO> listaFornecedores = null;
+
         EspecieBO especieBO = EspecieBO.getInstance();
         FornecedorBO fornecedorBO = FornecedorBO.getInstance();
         try {
@@ -125,8 +135,8 @@ public class LoteAdicionarActivity extends Activity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        for (int i = 0; i < listaEspecies.size(); i++) {
-            lista.add(listaEspecies.toString());
+        for (EspecieVO especies: listaEspecies) {
+            lista.add(especies.toString());
         }
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, lista);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
@@ -160,6 +170,9 @@ public class LoteAdicionarActivity extends Activity {
         params.putLong("sessaoId", sessaoVO.getId());
         params.putString("sessaoUsuario", sessaoVO.getNome());
         params.putInt("sessaoNivel", sessaoVO.getNivel());
+        if (operacao.equals("Editar")) {
+            /* TO DO */
+        }
     }
 
     /* Altera Rótulos em caso de Edição */
@@ -168,9 +181,9 @@ public class LoteAdicionarActivity extends Activity {
             case "editar":
                 /* Rótulos e Botões */
                 lblTitulo.setText(R.string.EditarLote);
-                btnAdicionar.setText(R.string.EditarLote);
+                btnExecutar.setText(R.string.EditarLote);
                 /* Povoa Campos da Interface */
-                id = new Long(params.getLong("loteID"));
+                id = params.getLong("loteID");
                 txtNumero.setText(params.getInt("loteNumero"));
 
 

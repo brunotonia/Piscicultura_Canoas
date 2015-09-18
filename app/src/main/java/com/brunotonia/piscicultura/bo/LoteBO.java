@@ -39,7 +39,7 @@ public class LoteBO {
             b = loteDAO.adicionar(db, loteVO);
             db.setTransactionSuccessful();
         } catch (Exception e) {
-            throw e;
+            e.printStackTrace();
         } finally {
             db.endTransaction();
             helper.close();
@@ -88,7 +88,7 @@ public class LoteBO {
             lotes = loteDAO.selecionarTodos(db);
             db.setTransactionSuccessful();
         } catch (Exception e) {
-            throw e;
+            e.printStackTrace();
         } finally {
             db.endTransaction();
             helper.close();
@@ -111,7 +111,30 @@ public class LoteBO {
             lotes = loteDAO.selecionarConcluidos(db);
             db.setTransactionSuccessful();
         } catch (Exception e) {
-            throw e;
+            e.printStackTrace();
+        } finally {
+            db.endTransaction();
+            helper.close();
+        }
+
+        return lotes;
+    }
+
+    public List<LoteVO> selecionarAtivos(Context context) throws Exception {
+
+        /* Variáveis do BD */
+        DatabaseHelper helper = new DatabaseHelper(context);
+        SQLiteDatabase db = helper.open();
+
+        /* Variáveis do Método*/
+        List<LoteVO> lotes = null;
+
+        try {
+            db.beginTransaction();
+            lotes = loteDAO.selecionarAtivos(db);
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             db.endTransaction();
             helper.close();

@@ -58,4 +58,5 @@
     <string name="AlocarTanque">Alocar Tanque</string>
     <string name="AlocarTanques">Alocar Tanques</string>
     <string name="Tanque">Tanques</string>
+    <string name="lote">Lotes</string>
 </resources>
